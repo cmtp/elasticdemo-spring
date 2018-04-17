@@ -14,8 +14,7 @@ public interface StudentRepository extends ElasticsearchRepository<Student,Long>
     
     List<Student> findByAge(int age);
 
-    @Query("{\"bool\" : {\"must\" : {\"field\" : {\"name\" : \"?0\"}}}}")
-    List<Student> searchByNameCustomQuery();
+    @Query("{\"query\" : {\"prefix\" : {\"_all\" : \"?0\"}}}")
+    Iterable<Student> searchByNameCustomQuery(String query);
 
-//    List<Student> findAll();
 }
